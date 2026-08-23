@@ -98,6 +98,9 @@ export function renderChips(container, nodes, selectedId, onSelect, { isSub = fa
 
 /** Создаёт DOM-карточку товара. qty - текущее количество в корзине. */
 export function createProductCard(product, qty, currencySymbol) {
+  
+  console.log('DEBUG', product.sku, '→', getLocalizedField(product, 'name'));
+  
   const card = document.createElement('article');
   card.className = 'product-card';
   card.dataset.sku = product.sku;
