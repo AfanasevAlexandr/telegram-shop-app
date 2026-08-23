@@ -27,6 +27,13 @@
   box-sizing: border-box;
 }
 
+/* Гарантируем, что атрибут hidden всегда реально скрывает элемент,
+   даже если для него же где-то ниже задан display: flex/grid и т.п. —
+   иначе такие правила побеждают браузерное поведение [hidden]. */
+[hidden] {
+  display: none !important;
+}
+
 html, body {
   margin: 0;
   padding: 0;
