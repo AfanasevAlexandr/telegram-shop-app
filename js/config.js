@@ -13,7 +13,7 @@ export const CONFIG = {
   // Пока пустой — сценарий Make настроим на следующем шаге.
   // Пока это поле пустое, отправка заказа работает в тестовом режиме
   // (см. js/api.js -> submitOrder).
-  ORDER_WEBHOOK_URL: '',
+  ORDER_WEBHOOK_URL: 'https://hook.eu1.make.com/yrkb5n14aabh1njb96gltqgybxu3wq0o',
 
   // Сколько миллисекунд хранить каталог в кэше браузера (localStorage),
   // чтобы не дёргать Apps Script при каждом открытии приложения.
