@@ -449,7 +449,7 @@ el.searchInput.addEventListener('input', () => {
 // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА
 // ============================================================
 el.langSwitch.addEventListener('click', async () => {
-  const next = getLanguage() === 'ru' ? 'en' : 'ru';
+  const next = getLanguage() === 'ru' ? 'sr' : 'ru';
   await setLanguage(next);
   el.langSwitch.textContent = next.toUpperCase();
   applySettingsToUI();
