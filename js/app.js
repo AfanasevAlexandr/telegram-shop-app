@@ -456,9 +456,9 @@ el.langSwitch.addEventListener('click', async () => {
   renderCategories();
   
   // ВРЕМЕННАЯ ДИАГНОСТИКА
-  console.log('currentLang:', getLanguage());
-  console.log('sample category:', state.categories[0]);
-  console.log('sample product:', state.products[state.products.length - 1]);
+  //console.log('currentLang:', getLanguage());
+  //console.log('sample category:', state.categories[0]);
+  //console.log('sample product:', state.products[state.products.length - 1]);
   
   renderProducts();
   updateCartBar();
