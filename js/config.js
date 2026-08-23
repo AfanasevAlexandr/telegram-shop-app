@@ -7,13 +7,13 @@
 export const CONFIG = {
   // URL Web App из Apps Script (файл Code.gs), отдающий JSON каталога.
   // Пример: 'https://script.google.com/macros/s/AKfycb.../exec'
-  CATALOG_API_URL: 'ВСТАВЬТЕ_СЮДА_URL_ВАШЕГО_APPS_SCRIPT',
+  CATALOG_API_URL: 'https://script.google.com/macros/s/AKfycbzod7Yub4l9eC-oUJcTY8slVlBqEu5NLB-h4BmnBDk0Yl26PXaUXPJw1R0EI95fgohb/exec',
 
   // URL вебхука Make, который будет принимать оформленные заказы.
   // Пока пустой — сценарий Make настроим на следующем шаге.
   // Пока это поле пустое, отправка заказа работает в тестовом режиме
   // (см. js/api.js -> submitOrder).
-  ORDER_WEBHOOK_URL: '',
+  ORDER_WEBHOOK_URL: 'https://hook.eu1.make.com/yrkb5n14aabh1njb96gltqgybxu3wq0o',
 
   // Сколько миллисекунд хранить каталог в кэше браузера (localStorage),
   // чтобы не дёргать Apps Script при каждом открытии приложения.
@@ -21,7 +21,7 @@ export const CONFIG = {
 
   // Поддерживаемые языки интерфейса и язык по умолчанию.
   SUPPORTED_LANGS: ['ru', 'sr'],
-  DEFAULT_LANG: 'ru',
+  DEFAULT_LANG: 'sr',
 
   // Используется, если в листе Settings не задан currency_symbol.
   DEFAULT_CURRENCY_SYMBOL: 'RSD',
