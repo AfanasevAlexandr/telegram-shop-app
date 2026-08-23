@@ -21,7 +21,7 @@ export const CONFIG = {
 
   // Поддерживаемые языки интерфейса и язык по умолчанию.
   SUPPORTED_LANGS: ['ru', 'sr'],
-  DEFAULT_LANG: 'sr',
+  DEFAULT_LANG: 'ru',
 
   // Используется, если в листе Settings не задан currency_symbol.
   DEFAULT_CURRENCY_SYMBOL: 'RSD',
