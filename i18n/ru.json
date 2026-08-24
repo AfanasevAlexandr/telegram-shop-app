@@ -3,7 +3,7 @@
   "load_error": "Не удалось загрузить каталог. Проверьте соединение.",
   "retry": "Повторить",
   "nothing_found": "Ничего не найдено",
-  "search_placeholder": "Поиск товаров...",
+  "search_placeholder": "Поиск по разделу...",
   "category_all": "Все",
   "category_featured": "Рекомендуем",
   "cart_open": "Корзина",
