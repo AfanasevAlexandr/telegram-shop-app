@@ -1,5 +1,9 @@
 import { getLocalizedField, t } from './i18n.js';
 
+// Специальный псевдо-раздел "Рекомендуем" - не является настоящей
+// категорией из таблицы, а фильтрует товары по колонке is_featured.
+export const FEATURED_CATEGORY_ID = '__featured__';
+
 /**
  * Строит дерево категорий из плоского списка (через parent_id).
  * Поддерживает произвольную глубину вложенности.
@@ -59,7 +63,9 @@ function findNodeById(tree, id) {
 export function filterProducts(products, { categoryTree, selectedCategoryId, searchQuery }) {
   let result = products;
 
-  if (selectedCategoryId) {
+  if (selectedCategoryId === FEATURED_CATEGORY_ID) {
+    result = result.filter(p => String(p.is_featured).trim().toUpperCase() === 'TRUE');
+  } else if (selectedCategoryId) {
     const node = findNodeById(categoryTree, selectedCategoryId);
     const allowedIds = node ? getSubtreeIds(node) : [selectedCategoryId];
     result = result.filter(p => allowedIds.includes(p.category_id));
@@ -75,9 +81,19 @@ export function filterProducts(products, { categoryTree, selectedCategoryId, sea
   );
 }
 
-/** Рендерит ряд чипов категорий одного уровня. */
-export function renderChips(container, nodes, selectedId, onSelect, { isSub = false } = {}) {
+/** Рендерит ряд чипов категорий одного уровня. leadingChips - доп.
+ *  чипы перед "Все" (например { id, label } для "Рекомендуем"). */
+export function renderChips(container, nodes, selectedId, onSelect, { isSub = false, leadingChips = [] } = {}) {
   container.innerHTML = '';
+
+  leadingChips.forEach(({ id, label }) => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'chip' + (isSub ? ' chip--sub' : '') + (selectedId === id ? ' is-active' : '');
+    chip.textContent = label;
+    chip.addEventListener('click', () => onSelect(id));
+    container.appendChild(chip);
+  });
 
   const allChip = document.createElement('button');
   allChip.type = 'button';
@@ -98,9 +114,6 @@ export function renderChips(container, nodes, selectedId, onSelect, { isSub = fa
 
 /** Создаёт DOM-карточку товара. qty - текущее количество в корзине. */
 export function createProductCard(product, qty, currencySymbol) {
-  
-  //console.log('DEBUG', product.sku, '→', getLocalizedField(product, 'name'));
-  
   const card = document.createElement('article');
   card.className = 'product-card';
   card.dataset.sku = product.sku;
