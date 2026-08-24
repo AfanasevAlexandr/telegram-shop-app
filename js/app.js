@@ -161,6 +161,7 @@ function onSelectTopCategory(categoryId) {
 
 function onSelectSubCategory(categoryId) {
   state.selectedSubId = categoryId;
+  renderCategories();
   renderProducts();
 }
 
@@ -454,12 +455,6 @@ el.langSwitch.addEventListener('click', async () => {
   el.langSwitch.textContent = next.toUpperCase();
   applySettingsToUI();
   renderCategories();
-  
-  // ВРЕМЕННАЯ ДИАГНОСТИКА
-  //console.log('currentLang:', getLanguage());
-  //console.log('sample category:', state.categories[0]);
-  //console.log('sample product:', state.products[state.products.length - 1]);
-  
   renderProducts();
   updateCartBar();
 });
