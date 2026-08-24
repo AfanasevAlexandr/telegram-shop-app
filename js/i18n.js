@@ -82,7 +82,7 @@ export function t(key) {
  * либо name, если перевод не заполнен в таблице.
  */
 export function getLocalizedField(item, field) {
-  if (currentLang !== CONFIG.DEFAULT_LANG) {
+  if (currentLang !== CONFIG.BASE_DATA_LANG) {
     const localizedValue = item[`${field}_${currentLang}`];
     if (localizedValue) return localizedValue;
   }
