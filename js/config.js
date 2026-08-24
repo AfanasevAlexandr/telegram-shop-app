@@ -33,7 +33,7 @@ export const CONFIG = {
   // определить предпочтение пользователя (нет сохранённого выбора,
   // Telegram/браузер не сообщили поддерживаемый язык). Можно свободно
   // менять на любой из SUPPORTED_LANGS, не оглядываясь на BASE_DATA_LANG.
-  DEFAULT_LANG: 'ru',
+  DEFAULT_LANG: 'sr',
 
 
   // Используется, если в листе Settings не задан currency_symbol.
