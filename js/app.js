@@ -5,6 +5,7 @@ import * as cart from './cart.js';
 import {
   buildCategoryTree,
   renderChips,
+  FEATURED_CATEGORY_ID,
   filterProducts,
   createProductCard,
   renderCardControls,
@@ -17,7 +18,7 @@ const state = {
   products: [],
   settings: {},
   categoryTree: [],
-  selectedTopId: null,
+  selectedTopId: FEATURED_CATEGORY_ID,
   selectedSubId: null,
   searchQuery: '',
   currencySymbol: CONFIG.DEFAULT_CURRENCY_SYMBOL,
@@ -141,7 +142,9 @@ function setViewState(view) {
 // РЕНДЕР КАТЕГОРИЙ
 // ============================================================
 function renderCategories() {
-  renderChips(el.categoriesTop, state.categoryTree, state.selectedTopId, onSelectTopCategory);
+  renderChips(el.categoriesTop, state.categoryTree, state.selectedTopId, onSelectTopCategory, {
+    leadingChips: [{ id: FEATURED_CATEGORY_ID, label: t('category_featured') }],
+  });
 
   const topNode = state.categoryTree.find(n => n.category_id === state.selectedTopId);
   if (topNode && topNode.children.length > 0) {
