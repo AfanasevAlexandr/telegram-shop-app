@@ -27,6 +27,7 @@ const state = {
 // ---- DOM-элементы ----
 const el = {
   shopName: document.getElementById('shop-name'),
+  welcomeText: document.getElementById('welcome-text'),
   langSwitch: document.getElementById('lang-switch'),
   searchInput: document.getElementById('search-input'),
   categoriesTop: document.getElementById('categories-top'),
@@ -61,6 +62,7 @@ const el = {
   submitOrderBtn: document.getElementById('submit-order-btn'),
 
   successOverlay: document.getElementById('success-overlay'),
+  successContact: document.getElementById('success-contact'),
   successClose: document.getElementById('success-close'),
 
   productOverlay: document.getElementById('product-overlay'),
@@ -127,6 +129,10 @@ function applySettingsToUI() {
   const lang = getLanguage();
   const shopName = state.settings.shop_name ? state.settings.shop_name[lang] : null;
   if (shopName) el.shopName.textContent = shopName;
+
+  const welcomeText = state.settings.welcome_text ? state.settings.welcome_text[lang] : null;
+  el.welcomeText.textContent = welcomeText || '';
+  el.welcomeText.hidden = !welcomeText;
 
   const currency = state.settings.currency_symbol ? state.settings.currency_symbol[lang] : null;
   state.currencySymbol = currency || CONFIG.DEFAULT_CURRENCY_SYMBOL;
@@ -425,6 +431,7 @@ el.checkoutForm.addEventListener('submit', async e => {
     await submitOrder(order);
     cart.clearCart();
     closeOverlay(el.checkoutOverlay);
+    renderSuccessContact();
     openOverlay(el.successOverlay);
     el.checkoutForm.reset();
   } catch (err) {
@@ -434,6 +441,13 @@ el.checkoutForm.addEventListener('submit', async e => {
     el.submitOrderBtn.disabled = false;
   }
 });
+
+function renderSuccessContact() {
+  const lang = getLanguage();
+  const contact = state.settings.manager_contact ? state.settings.manager_contact[lang] : null;
+  el.successContact.textContent = contact || '';
+  el.successContact.hidden = !contact;
+}
 
 el.successClose.addEventListener('click', () => closeOverlay(el.successOverlay));
 
