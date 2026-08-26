@@ -12,7 +12,10 @@
 
   <!-- Шапка -->
   <header class="header">
-    <h1 class="header__title" id="shop-name">Магазин</h1>
+    <div class="header__titles">
+      <h1 class="header__title" id="shop-name">Магазин</h1>
+      <p class="header__subtitle" id="welcome-text" hidden></p>
+    </div>
     <button class="lang-switch" id="lang-switch" type="button" aria-label="Switch language">RU</button>
   </header>
 
@@ -132,6 +135,7 @@
       <div class="success-icon">✓</div>
       <h2 data-i18n="success_title">Заказ отправлен</h2>
       <p data-i18n="success_text">Менеджер скоро свяжется с вами для подтверждения заказа.</p>
+      <p class="success-contact" id="success-contact" hidden></p>
       <button class="btn btn--primary" id="success-close" data-i18n="success_close">Готово</button>
     </div>
   </div>
