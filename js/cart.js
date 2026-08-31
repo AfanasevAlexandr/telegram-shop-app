@@ -71,15 +71,27 @@ export function getTotalItemsCount() {
 }
 
 /**
+ * Округляет денежную сумму до 2 знаков после запятой.
+ * Устраняет типичную погрешность двоичной арифметики с плавающей
+ * точкой в JS (например, 1.9 * 3 без округления даёт
+ * 5.699999999999999 вместо 5.7) — без этого "грязное" число
+ * улетало бы дальше в заказ и в таблицу Make как есть.
+ */
+export function roundMoney(value) {
+  return Math.round((Number(value) + Number.EPSILON) * 100) / 100;
+}
+
+/**
  * Считает сумму корзины по актуальному каталогу товаров
  * (products - массив из api.fetchCatalog()).
  */
 export function getTotalPrice(products) {
   const bySku = indexBySku(products);
-  return getEntries().reduce((sum, { sku, qty }) => {
+  const total = getEntries().reduce((sum, { sku, qty }) => {
     const product = bySku[sku];
-    return product ? sum + product.price * qty : sum;
+    return product ? sum + roundMoney(product.price * qty) : sum;
   }, 0);
+  return roundMoney(total);
 }
 
 function indexBySku(products) {
