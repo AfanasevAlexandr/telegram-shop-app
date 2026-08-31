@@ -370,7 +370,7 @@ function renderCheckoutSummary() {
     if (!product) return;
     const row = document.createElement('div');
     row.className = 'checkout-summary__row';
-    row.innerHTML = `<span>${escapeHtml(getLocalizedField(product, 'name'))} × ${qty}</span><span>${formatPrice(product.price * qty)} ${state.currencySymbol}</span>`;
+    row.innerHTML = `<span>${escapeHtml(getLocalizedField(product, 'name'))} × ${qty}</span><span>${formatPrice(cart.roundMoney(product.price * qty))} ${state.currencySymbol}</span>`;
     el.checkoutSummary.appendChild(row);
   });
 
@@ -396,7 +396,7 @@ el.checkoutForm.addEventListener('submit', async e => {
         name: product.name,
         qty,
         price: product.price,
-        sum: product.price * qty,
+        sum: cart.roundMoney(product.price * qty),
       };
     })
     .filter(Boolean);
